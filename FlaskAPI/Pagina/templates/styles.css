@@ -1,0 +1,137 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#4f4797;
+    color: white;
+    padding-top: 60px; /* Ajusta este valor según la altura de tu navegador */
+    overflow-x: hidden; /* Evita que el contenido se desplace horizontalmente */
+}
+
+.nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.nav.fixed {
+    background-color: white; /* Cambia el color de fondo a blanco */
+    color: black; /* Cambia el color del texto a negro */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav.fixed .brand, .nav.fixed ul li a {
+    color: black; /* Asegúrate de que el texto también sea negro */
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.nav ul li {
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.nav.fixed ul li a {
+    color: black; /* Cambia el color del texto a negro cuando el nav está fijo */
+}
+
+/* Estilos para la primera sección */
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4f4797;
+}
+
+.banner .content {
+    flex: 1;
+    max-width: 50%; /* Ajusta el ancho del texto */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.banner .image {
+    flex: 0 0 40%; /* Ajusta la imagen a un 40% del ancho del contenedor */
+    display: flex;
+    justify-content: center; /* Centra la imagen dentro de su contenedor */
+}
+
+.banner .image img {
+    max-width: 100%; /* Asegúrate de que la imagen no supere su contenedor */
+    height: auto;
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid white; /* Borde blanco alrededor de la imagen */
+}
+
+.banner h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #faf3cc; /* Color dorado para resaltar el título */
+}
+
+.banner p {
+    font-size: 1.2em;
+    color: #D3D3D3; /* Color gris claro para el párrafo */
+}
+
+/* Estilos para la segunda sección */
+.banner2 {
+    display: flex;
+    justify-content: space-between; /* Asegúrate de que los elementos se alineen adecuadamente */
+    align-items: center;
+    padding: 20px;
+    background-color: #4f4797;
+}
+
+.banner2 .content2 {
+    flex: 1;
+    max-width: 50%; /* Ajusta el ancho del texto */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.banner2 .image2 {
+    flex: 0 0 40%; /* Ajusta la imagen a un 40% del ancho del contenedor */
+    display: flex;
+    justify-content: center; /* Centra la imagen dentro de su contenedor */
+}
+
+.banner2 .image2 img {
+    max-width: 100%; /* Asegúrate de que la imagen no supere su contenedor */
+    height: auto;
+    border-radius: 15px; /* Bordes redondeados */
+    border: 2px solid white; /* Borde blanco alrededor de la imagen */
+}
+
+.banner2 h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #faf3cc; /* Color dorado para resaltar el título */
+}
+
+.banner2 p {
+    font-size: 1.2em;
+    color: #D3D3D3; /* Color gris claro para el párrafo */
+}
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prex Inspired Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="navbar" class="nav">
+        <div class="brand">FraudeCero</div>
+        <ul>
+            <li><a href="#">Quienes somos</a></li>
+            <li><a href="#">Beneficios</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <li><a href="#">Ingresar</a></li>
+            <li><a href="#">Descargar app</a></li>
+        </ul>
+    </nav>
+    
+    <section class="banner">
+        <div class="content">
+            <h1>Protege tu mundo digital</h1>
+            <p>En nuestra plataforma, te ayudamos a detectar y prevenir fraudes online para que puedas navegar con total seguridad y tranquilidad. Confía en nosotros para proteger tu información y tus finanzas.</p>
+        </div>
+        <div class="image">
+            <img src="img/Ciberdelito.jpg" alt="Imagen ilustrativa de detección de fraudes online">
+        </div>
+    </section>
+    
+    <section class="banner2">
+        
+        <div class="image2">
+            <img src="img/Ciberdelito.jpg" alt="Imagen ilustrativa de detección de fraudes online">
+        </div>
+        <div class="content2">
+            <h1>Protege tu mundo digital</h1>
+            <p>En nuestra plataforma, te ayudamos a detectar y prevenir fraudes online para que puedas navegar con total seguridad y tranquilidad. Confía en nosotros para proteger tu información y tus finanzas.</p>
+        </div>
+        
+    </section>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) { // Cambia el valor según cuándo quieras que se active el cambio
+                navbar.classList.add('fixed');
+            } else {
+                navbar.classList.remove('fixed');
+            }
+        });
+    </script>
+
+    <section class="form-section">
+        <h2>Prueba nuestro detector de fraudes</h2>
+
+        <!-- Formulario para cargar archivo -->
+        <form id="fraudForm">
+            <label for="fileInput">Carga tu archivo:</label>
+            <input type="file" id="fileInput" name="fileInput" accept=".csv">
+            <button type="submit">Analizar</button>
+        </form>
+
+        <div id="responseContainer"></div> <!-- Contenedor para mostrar la respuesta de la API -->
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+    <script>
+    document.getElementById("fraudForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const responseContainer = document.getElementById("responseContainer");
+        responseContainer.innerHTML = "";
+
+        const fileInput = document.getElementById("fileInput").files[0];
+
+        try {
+            if (fileInput) {
+                const formData = new FormData();
+                formData.append("file", fileInput);
+
+                const response = await fetch("http://127.0.0.1:5000/predict", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+                console.log("Respuesta de la API:", result); // Verificación
+
+                if (response.ok) {
+                    responseContainer.innerHTML = `<p>${result.message}</p>`;
+                } else {
+                    responseContainer.innerHTML = `<p>Error: ${result.message || "No se pudo procesar la solicitud"}</p>`;
+                }
+            } else {
+                responseContainer.innerHTML = `<p>Error: Debes proporcionar un archivo a analizar</p>`;
+            }
+        } catch (error) {
+            console.error("Error al procesar:", error); // Captura cualquier error en consola
+            responseContainer.innerHTML = `<p>Error durante el procesamiento: ${error.message}</p>`;
+        }
+    });
+    </script>
+
+</body>
+</html>
