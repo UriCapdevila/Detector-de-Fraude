@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chau Estafas | FraudeCero</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Título y Favicon -->
+    <title>Fraude Cero</title>
+    <link rel="icon" href="ruta/a/tu/favicon.ico" type="image/x-icon"> <!-- Formato .ico -->
+    <link rel="icon" href="img/2.png" type="image/png"> <!-- Formato .png -->
+</head>
+<body>
+    
+    <!-- Barra de Navegación -->
+    <nav id="navbar" class="nav">
+        <div class="brand"> 
+            <img src="img/logo 64x64.png" alt="FraudeCero"> 
+        </div>
+        <ul>
+            <li><a href="#">Quienes somos</a></li>
+            <li><a href="#">Beneficios</a></li>
+            <li><a href="#">Ayuda</a></li>
+            <li><a href="#">Ingresar</a></li>
+            <li><a href="#">Descargar app</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Primera Sección -->
+    <section class="banner">
+        <div class="content">
+            <h1>Ciberseguridad avanzada, fraude reducido a cero.</h1>
+            <br>
+            <p>Tenemos el orgullo de ayudar a empresas y usuarios a operar en el mundo digital con confianza, ofreciendo soluciones innovadoras para la prevencion de fraudes, garantizando la seguridad de las transacciones y la educacion en mejores prácticas de ciberseguridad.</p>
+        </div>
+        <div class="image">
+            <img src="img/Oficina.png" alt="Imagen ilustrativa de detección de fraudes online">
+        </div>
+    </section>
+
+    <!-- Sección del detector de fraudes -->
+
+    <section class="form-section">
+        <h2>Prueba nuestro detector de fraudes</h2>
+        <div class="form-container">
+            <form id="fraudForm">
+                <label for="dataInput">Ingresa datos para analizar:</label>
+                <input type="text" id="dataInput" name="dataInput" placeholder="Escribe aquí los datos">
+    
+                <!-- Nueva opción: Subir archivo -->
+                <label for="fileInput">Carga tu archivo:</label>
+                <input type="file" id="fileInput" name="fileInput" accept=".xlsx,.xls,.csv">
+                
+                <button type="submit">Analizar</button>
+            </form>
+            <div id="responseContainer"></div> <!-- Contenedor para mostrar la respuesta de la API -->
+        </div>
+    </section>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    
+    <script>
+    document.getElementById("fraudForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+    
+        const responseContainer = document.getElementById("responseContainer");
+        responseContainer.innerHTML = "";
+    
+        const dataInput = document.getElementById("dataInput").value;
+        const fileInput = document.getElementById("fileInput").files[0];
+        let input_data;
+    
+        try {
+            if (fileInput) {
+                input_data = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const fileType = fileInput.name.split('.').pop().toLowerCase();
+                        let jsonData;
+    
+                        if (fileType === 'csv') {
+                            const csvText = event.target.result;
+                            jsonData = csvToJson(csvText);
+                        } else {
+                            const data = new Uint8Array(event.target.result);
+                            const workbook = XLSX.read(data, { type: 'array' });
+                            const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                            jsonData = XLSX.utils.sheet_to_json(worksheet);
+                        }
+    
+                        console.log("Datos leídos del archivo:", jsonData); // Verificación
+                        resolve(jsonData);
+                    };
+                    reader.onerror = () => reject(reader.error);
+                    reader.readAsArrayBuffer(fileInput);
+                });
+            } else if (dataInput) {
+                input_data = dataInput;
+                console.log("Datos de entrada:", input_data); // Verificación
+            } else {
+                responseContainer.innerHTML = `<p>Error: Debes proporcionar datos a analizar</p>`;
+                return;
+            }
+    
+            const response = await fetch("http://127.0.0.1:5000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    input_data: input_data
+                })
+            });
+    
+            const result = await response.json();
+            console.log("Respuesta de la API:", result); // Verificación
+    
+            if (response.ok) {
+                responseContainer.innerHTML = `<p>Respuesta de la API: ${JSON.stringify(result)}</p>`;
+            } else {
+                responseContainer.innerHTML = `<p>Error: ${result.message || "No se pudo procesar la solicitud"}</p>`;
+            }
+        } catch (error) {
+            console.error("Error al procesar:", error); // Captura cualquier error en consola
+            responseContainer.innerHTML = `<p>Error durante el procesamiento: ${error.message}</p>`;
+        }
+    });
+    
+    function csvToJson(csvText) {
+        const lines = csvText.split("\n");
+        const headers = lines[0].split(",");
+        const result = [];
+    
+        for (let i = 1; i < lines.length; i++) {
+            const obj = {};
+            const currentline = lines[i].split(",");
+    
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j].trim()] = currentline[j].trim();
+            }
+    
+            result.push(obj);
+        }
+    
+        return result;
+    }
+
+    </script>
+
+    <!-- Pie de Página -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>FraudeCero</h3>
+                <p>Protegiendo tu mundo digital con tecnología avanzada.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Quienes somos</a></li>
+                    <li><a href="#">Beneficios</a></li>
+                    <li><a href="#">Ayuda</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contáctanos</h3>
+                <p>Email: contacto@fraudecero.com</p>
+                <p>Teléfono: +54 123 456 789</p>
+                <p>Dirección: Calle Falsa 123, Buenos Aires, Argentina</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 FraudeCero. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Script del Nav -->
+    <script>
+        window.addEventListener('scroll', function() {
+            var navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) { // Cambia el valor según cuándo quieras que se active el cambio
+                navbar.classList.add('fixed');
+            } else {
+                navbar.classList.remove('fixed');
+            }
+        });
+    </script>
+    
+</body>
+</html>
+

@@ -1,0 +1,162 @@
+/* Reset de algunos estilos básicos */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F4F9;
+    color: #2E0D57;
+}
+
+/* Barra de navegación */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6515B8;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+}
+
+.nav.fixed {
+    background-color: hwb(0 100% 0%); /* Cambia este color según tu preferencia */
+    transition: background-color 0.3s; /* Añade una transición suave */
+    box-shadow: 0 1px 3px #6515B8;
+}
+
+.nav.fixed .brand, .nav.fixed ul li a {
+    color: #000; /* AsegÃšrate de que el texto tambiÃĐn sea negro */
+}
+.nav .brand img {
+    height: 40px;
+}
+
+.nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+.nav ul li {
+    list-style: none;
+}
+
+.nav ul li a {
+    color: #F4F4F9;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav ul li a:hover {
+    color: #49C9D3;
+}
+
+/* Sección banner */
+.banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 20px;
+    background-color: #F4F4F9;
+    color: #2E0D57;
+}
+
+.banner .content {
+    max-width: 600px;
+}
+
+.banner h1 {
+    color: #6515B8;
+    font-size: 2.5rem;
+}
+
+.banner p {
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+.banner .image img {
+    max-width: 400px;
+}
+
+/* Sección del detector de fraudes */
+.form-section {
+    padding: 50px 20px;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.form-section h2 {
+    color: #6515B8;
+    margin-bottom: 20px;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container label {
+    text-align: left;
+}
+
+.form-container input[type="text"],
+.form-container input[type="file"] {
+    padding: 10px;
+    border: 1px solid #2E0D57;
+    border-radius: 5px;
+}
+
+.form-container button {
+    background-color: #6515B8;
+    color: #F4F4F9;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #2E0D57;
+}
+
+/* Pie de página */
+.footer {
+    background-color: #110026;
+    color: #F4F4F9;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer .footer-section h3 {
+    color: #49C9D3;
+}
+
+.footer .footer-section ul li a {
+    color: #F4F4F9;
+}
+
+.footer .footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #49C9D3;
+    padding-top: 10px;
+}
