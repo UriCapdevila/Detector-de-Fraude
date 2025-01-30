@@ -140,10 +140,30 @@ body {
 
 /*Tableu*/
 
+.tableau {
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: #F4F4F9;
+    color: #2E0D57;
+    text-align: center;
+}
+
+.tableau h2 {
+    color: #6515B8;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tableau p {
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
 .tableauPlaceholder {
     position: relative;
     margin: 20px auto; /* Centra el elemento */
-    padding: 10px;
+    padding: 10px 10px 10px 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #F4F4F9;
