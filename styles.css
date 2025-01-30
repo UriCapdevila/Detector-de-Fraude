@@ -142,7 +142,7 @@ body {
 /*Tableu*/
 
 .tableau {
-    display: block; /* Ocultar la sección de Tableau por defecto */
+    display: none; /* Ocultar la sección de Tableau por defecto */
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
