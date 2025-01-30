@@ -26,10 +26,16 @@ body {
 }
 
 .nav.fixed {
-    background-color: hwb(0 100% 0%); /* Cambia este color según tu preferencia */
-    transition: background-color 0.3s; /* Añade una transición suave */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #F4F4F9;
+    z-index: 1000;  /* Asegúrate de que se quede encima de otros elementos */
     box-shadow: 0 1px 3px #6515B8;
+    transition: background-color 0.3s;
 }
+
 
 .nav.fixed .brand, .nav.fixed ul li a {
     color: #000; /* AsegÃšrate de que el texto tambiÃĐn sea negro */
@@ -88,7 +94,7 @@ body {
 /* Sección del detector de fraudes */
 .form-section {
     padding: 50px 20px;
-    background-color: #FFFFFF;
+    background-color: #F4F4F9;
     text-align: center;
 }
 
@@ -130,6 +136,53 @@ body {
 
 .form-container button:hover {
     background-color: #2E0D57;
+}
+
+/*Tableu*/
+
+.tableau {
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background-color: #F4F4F9;
+    color: #2E0D57;
+    text-align: center;
+}
+
+.tableau h2 {
+    color: #6515B8;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.tableau p {
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+.tableauPlaceholder {
+    position: relative;
+    margin: 20px auto; /* Centra el elemento */
+    padding: 10px 10px 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #F4F4F9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* Ajusta este valor según sea necesario */
+    text-align: center; /* Alinea el contenido del contenedor al centro */
+}
+
+.tableauPlaceholder img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.tableauViz {
+    display: fixed; /* Ajusta este valor según sea necesario */
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 8px;
 }
 
 /* Pie de página */
