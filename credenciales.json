@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "fraudecero",
+  "private_key_id": "eedeaa2003ab1f5ecfbc287a3aa9826611c3006d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCklvBu8zpS40E7\nbqT5jXgaZbMoeeNpz5a6U27Tg+tFIwdPlrvoHaEt+3y3ocbNdH12F+Wk+IXwVw3m\nWfqBhWLQrtC/L12K4Y31fGiCN90HTKNUmfvKB5nTGKE6SRgE3f14pQcp3o6D5Ogd\nFHVy1RAWreZE9XqYEkV6B5+ayf1ZqF3w0iu9k8SMa8aU7kC7n2EdStZ6HUXRhFRP\n6zqUBS2GYNURcE5e1t0m9BTWFYD6HBnH2671VFp9MPLSYsUa8SS+21V7mn4xNq9p\nrPBkfMS7qoDmrN0OHeKL2pIHqn6nDsqZS6gClZE1RdUaTiWroBnfrKRWzT68Jxdz\nkuH5lL7fAgMBAAECggEADX0B2uiGTO5V1WPgaO595hU+j6B0PCLTNJWLfWcQEVw+\nXaM55rBYRKyZpceVbhdQBC0Pg1Zgok0oFPV7xkCNqWd3hlYrNtX8Qcl+cRQt7Mq2\n5JiH83XDAUiWnJsKjl+ORbmp3XW2kpA1sNMROvtuCZsacL1OB4dmd9/cZcg27IbH\ngSq427SJP+MgFh+z5w8hR2BAzVUL4cMDYI0aP/hzMER4GFWiDG6auUmZwJSHwbly\npTgGJAKC21W1IiCy6e29R4L5rwpzYiYciP8HaiV4T8Cqu6QT0wpCL10xFWzSarEI\nAbMbLrm0K7wF3weS/POLc02AUmpJ4LmH4yudcMLlCQKBgQDgUZMYNBv9AdvG9+Px\n9HP7Y7Hgu5M8txwJQ9rKCXWe+oGm765voVDfgNhrr9MvQ3ZxxWjjYdluz7yGeDpX\nsO2wsnIN9wnXSLQNNOSXBpU67UFRwAJ7e1vZO4ZBGku9QmT79Wi0n/u+qYDx+B6h\nwOJ0W1Uq0YUL+eFxbEZtbyFQiQKBgQC71c/VUml9dz2IFwJASInQMzZ94w7FoHY8\nh7Uz4l2k5hX+Tz4XG95ixF4iq5qaLwXbraL5pofqZ+ifrd+T36KWoh1K0mMs5bje\nEW+iFksi0t5aYFdTqFB860cdjgl3evL4o0cDSA6VG+HrBQJmUNx3cLTBvqxWC86y\nD+8PATMqJwKBgGZIa/T+VcDA5zDLeZGq8HOxWrtpbFKj/9Gtsgar14kdGp8+7OAT\nw2eWPZikvHvxnAF2jUQZKubfLEx4Z8nyb/9A7sa1XTRf/1GCS7UdmFAdPMqE7dzW\nO+RKwwXOcriinJ9SoGK0DDs82QH8LCN/awK5XpU+ohb64rQwNdDSenNZAoGAN7eE\nntKDWCQ2rFem40qhFpEaaN0hVJ30dKAMsAdFn9RgUb9Pu6sYnFODWOVuRq4MHs2y\nujsbtfx8lGEPIN4FbIlKBxfBM2AxJi4l3v6d6waBzm0lejtDJMrlnW60gCyIRhio\nx+Bn8vMCYKRrwc3al9NmytG0bRGzjj4Lu3evpaECgYEAqS1UqHmj8YZEvZ5BpBtz\nzvD/UDOGhwXhQMzyvo+pKAfUTUaHUG/rBTFrcNRgzyjimLmz+ImjHLMvd99LYQw4\nRLCO74Zsx+jDqOSlUfp4BvX0e3A/CWhTl0icVpaYLdYAf3Fo1rF4QLfxNzA6FNoi\nY7hLAStIysGvDQxS+YYgItc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "save-data-procesada@fraudecero.iam.gserviceaccount.com",
+  "client_id": "102033196673070102305",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/save-data-procesada%40fraudecero.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
