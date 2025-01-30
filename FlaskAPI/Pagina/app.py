@@ -17,7 +17,7 @@ model = joblib.load(model_path)
 
 # Configura las credenciales de la API de Google Drive
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
-SERVICE_ACCOUNT_FILE = r"C:\Users\cande\Documents\No Country\Fraude_Cero\data\credenciales.json"
+SERVICE_ACCOUNT_FILE = r"C:\Users\Uri_C\Documents\GitHub\Detector-de-Fraude\FlaskAPI\Credenciales\credenciales.json"
 
 credentials = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 drive_service = build('drive', 'v3', credentials=credentials)
