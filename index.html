@@ -64,92 +64,77 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     
     <script>
-    document.getElementById("fraudForm").addEventListener("submit", async function(event) {
-        event.preventDefault();
-    
-        const responseContainer = document.getElementById("responseContainer");
-        responseContainer.innerHTML = "";
-    
-        const dataInput = document.getElementById("dataInput").value;
-        const fileInput = document.getElementById("fileInput").files[0];
-        let input_data;
-    
-        try {
-            if (fileInput) {
-                input_data = await new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        const fileType = fileInput.name.split('.').pop().toLowerCase();
-                        let jsonData;
-    
-                        if (fileType === 'csv') {
-                            const csvText = event.target.result;
-                            jsonData = csvToJson(csvText);
-                        } else {
-                            const data = new Uint8Array(event.target.result);
-                            const workbook = XLSX.read(data, { type: 'array' });
-                            const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                            jsonData = XLSX.utils.sheet_to_json(worksheet);
-                        }
-    
-                        console.log("Datos leídos del archivo:", jsonData); // Verificación
-                        resolve(jsonData);
-                    };
-                    reader.onerror = () => reject(reader.error);
-                    reader.readAsArrayBuffer(fileInput);
-                });
-            } else if (dataInput) {
-                input_data = dataInput;
-                console.log("Datos de entrada:", input_data); // Verificación
-            } else {
-                responseContainer.innerHTML = `<p>Error: Debes proporcionar datos a analizar</p>`;
-                return;
-            }
-    
-            const response = await fetch("http://127.0.0.1:5000/predict", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    input_data: input_data
-                })
-            });
-    
-            const result = await response.json();
-            console.log("Respuesta de la API:", result); // Verificación
-    
-            if (response.ok) {
-                responseContainer.innerHTML = `<p>Respuesta de la API: ${JSON.stringify(result)}</p>`;
-            } else {
-                responseContainer.innerHTML = `<p>Error: ${result.message || "No se pudo procesar la solicitud"}</p>`;
-            }
-        } catch (error) {
-            console.error("Error al procesar:", error); // Captura cualquier error en consola
-            responseContainer.innerHTML = `<p>Error durante el procesamiento: ${error.message}</p>`;
-        }
-    });
-    
-    function csvToJson(csvText) {
-        const lines = csvText.split("\n");
-        const headers = lines[0].split(",");
-        const result = [];
-    
-        for (let i = 1; i < lines.length; i++) {
-            const obj = {};
-            const currentline = lines[i].split(",");
-    
-            for (let j = 0; j < headers.length; j++) {
-                obj[headers[j].trim()] = currentline[j].trim();
-            }
-    
-            result.push(obj);
-        }
-    
-        return result;
-    }
+   document.getElementById("fraudForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-    </script>
+    const responseContainer = document.getElementById("responseContainer");
+    responseContainer.innerHTML = "";
+    
+    const dataInput = document.getElementById("dataInput").value;
+    const fileInput = document.getElementById("fileInput").files[0];
+    let input_data;
+    
+    try {
+        // Si se carga un archivo
+        if (fileInput) {
+            input_data = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const fileType = fileInput.name.split('.').pop().toLowerCase();
+                    let jsonData;
+
+                    if (fileType === 'csv') {
+                        const csvText = event.target.result;
+                        jsonData = csvToJson(csvText);
+                    } else {
+                        const data = new Uint8Array(event.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                        jsonData = XLSX.utils.sheet_to_json(worksheet);
+                    }
+
+                    console.log("Datos leídos del archivo:", jsonData); // Verificación
+                    resolve(jsonData);
+                };
+                reader.onerror = () => reject(reader.error);
+                reader.readAsArrayBuffer(fileInput);
+            });
+        } else if (dataInput) {
+            input_data = dataInput;
+            console.log("Datos de entrada:", input_data); // Verificación
+        } else {
+            responseContainer.innerHTML = `<p>Error: Debes proporcionar datos a analizar</p>`;
+            return;
+        }
+
+        const response = await fetch("http://127.0.0.1:5000/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                input_data: input_data
+            })
+        });
+
+        const result = await response.json();
+        console.log("Respuesta de la API:", result); // Verificación
+
+        if (response.ok) {
+            responseContainer.innerHTML = `<p>Respuesta de la API: ${JSON.stringify(result)}</p>`;
+
+            // Mostrar la sección de Tableau después de subir el archivo
+            document.querySelector('.tableau').style.display = 'block';  // Muestra la sección de Tableau
+        } else {
+            responseContainer.innerHTML = `<p>Error: ${result.message || "No se pudo procesar la solicitud"}</p>`;
+        }
+    } catch (error) {
+        console.error("Error al procesar:", error); // Captura cualquier error en consola
+        responseContainer.innerHTML = `<p>Error durante el procesamiento: ${error.message}</p>`;
+    }
+});
+
+</script>
 
 <!-- Tableau -->
 <section class='tableau'>

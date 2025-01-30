@@ -136,11 +136,13 @@ body {
 
 .form-container button:hover {
     background-color: #2E0D57;
+    
 }
 
 /*Tableu*/
 
 .tableau {
+    display: block; /* Ocultar la sección de Tableau por defecto */
     justify-content: center;
     align-items: center;
     padding: 50px 20px;
@@ -212,4 +214,25 @@ body {
     margin-top: 20px;
     border-top: 1px solid #49C9D3;
     padding-top: 10px;
+}
+
+/*responsividad*/
+
+@media (max-width: 768px) {
+    .banner {
+        flex-direction: column;
+        padding: 40px 20px;
+    }
+
+    .banner .content {
+        max-width: 100%;
+    }
+
+    .form-container {
+        max-width: 90%;
+    }
+
+    .tableauPlaceholder {
+        max-width: 100%;
+    }
 }
